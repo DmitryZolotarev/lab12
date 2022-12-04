@@ -3,20 +3,21 @@
 int main() {
 	system("chcp 1251");
 	system("cls");
-	puts("Abiturient Manager 1.0\n");
+	puts("Abiturient Manager 1.1\n");
 	int n, command;
 	string file_name;
-	streamoff current_position = 0;
 	cout << "Количество абитуриентов: ";
 	cin >> n;
 	cout << endl;
-	system("dir");
-	cout << "\nВведите имя файла с базой данных из списка выше: ";
+	puts("Список файлов в папке программы:\n");
+	system("dir /b");
+	cout << "\nВведите имя файла с базой данных: ";
 	cin >> file_name;
 	abiturient* abiturients = new abiturient[n];
 	while(true){
+		streamoff current_position = 0;
 		system("cls");
-		puts("Abiturient Manager 1.0\n");
+		puts("Abiturient Manager 1.1\n");
 		puts("Список команд:");
 		puts("	1 - ввод данных об абитуриентах с клавиатуры");
 		puts("	2 - запись введённых данных в файл");
@@ -36,6 +37,7 @@ int main() {
 				}
 				break;
 			case 2:
+				{ofstream file(file_name); }/*Создание или перезапись файла*/
 				for (int i = 0; i < n; i++) {
 					abiturients[i].cursor_pos = current_position;
 					abiturients[i].write_to_file(file_name);
@@ -50,7 +52,8 @@ int main() {
 					abiturients[i].read_from_file(file_name);
 					current_position = abiturients[i].cursor_pos;
 				}	
-				cout << "Данные прочитаны из файла " << file_name << ".\n\n";;
+				if (current_position != 0) cout << "Данные прочитаны из файла " << file_name << ".\n\n";
+				else cout << "Ошибка: Файл " << file_name << " отсутствует, либо пустой!\n\n";
 				system("pause");
 				break;
 			case 4:
@@ -79,8 +82,9 @@ int main() {
 				cin >> n;
 				break;
 			case 8:
-				system("dir");
-				cout << "\nВведите имя файла с базой данных из списка выше: ";
+				puts("Список файлов в папке программы:\n");
+				system("dir /b");
+				cout << "\nВведите имя файла с базой данных: ";
 				cin >> file_name;
 				break;
 		}
