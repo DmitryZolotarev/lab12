@@ -18,7 +18,7 @@ struct abiturient {
             }  
         for (int i = info[13].length() - 1, j = 1; i >= 0; i--)
             if (info[13][i] >= '0' && info[13][i] <= '9') {
-                math += (info[13][i] - 48)* j;
+                math += (info[13][i] - 48) * j;
                 j *= 10;
             }   
         for (int i = info[14].length() - 1, j = 1; i >= 0; i--)
