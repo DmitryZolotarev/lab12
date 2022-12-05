@@ -31,60 +31,61 @@ struct abiturient {
         return russian + math + inform;
     }
     void input() {
-        cout << "Фамилия: "; cin >> info[0];
-        cout << "Имя: "; cin >> info[1];
-        cout << "Отчество: "; cin >> info[2];
+        cout << "Г”Г Г¬ГЁГ«ГЁГї: "; cin >> info[0];
+        cout << "Г€Г¬Гї: "; cin >> info[1];
+        cout << "ГЋГІГ·ГҐГ±ГІГўГ®: "; cin >> info[2];
+        if (info[2].length() == 0) cin >> info[2];
         string S;
-        cout << "Пол: "; cin >> S;
-        if (S[0] == 'М' || S[0] == 'м') gender = 1;
-        else if (S[0] == 'Ж' || S[0] == 'ж') gender = 0;
-        cout << "Дата рождения: ";  
+        cout << "ГЏГ®Г«: "; cin >> S;
+        if (S[0] == 'ГЊ' || S[0] == 'Г¬') gender = 1;
+        else if (S[0] == 'Г†' || S[0] == 'Г¦') gender = 0;
+        cout << "Г„Г ГІГ  Г°Г®Г¦Г¤ГҐГ­ГЁГї: ";  
         getline(cin, info[3]);
-        getline(cin, info[3]);
-        cout << "Национальность: "; 
+        if (info[3].length() == 0) getline(cin, info[3]);
+        cout << "ГЌГ Г¶ГЁГ®Г­Г Г«ГјГ­Г®Г±ГІГј: "; 
         getline(cin, info[4]);
-        cout << "\nАдрес: \n";
-        cout << "   Страна: ";      
+        cout << "\nГЂГ¤Г°ГҐГ±: \n";
+        cout << "   Г‘ГІГ°Г Г­Г : ";      
         getline(cin, info[5]);
-        cout << "   Регион: ";  
+        cout << "   ГђГҐГЈГЁГ®Г­: ";  
         getline(cin, info[6]);
-        cout << "   Населённый пункт: ";
+        cout << "   ГЌГ Г±ГҐГ«ВёГ­Г­Г»Г© ГЇГіГ­ГЄГІ: ";
         getline(cin, info[7]);
-        cout << "   Улица: ";       
+        cout << "   Г“Г«ГЁГ¶Г : ";       
         getline(cin, info[8]);
-        info[8] = "ул. " + info[8];
-        cout << "   Дом: "; cin >> info[9];
-        info[9] = "дом " + info[9];
-        cout << "   Квартира: "; cin >> info[10];
-        info[10] = "кв. " + info[10];
-        cout << "   Почтовый индекс: "; cin >> info[11];
-        puts("\nРезультаты ЕГЭ:");
-        cout << "   Русский язык: "; cin >> info[12];
-        cout << "   Математика: "; cin >> info[13];
-        cout << "   Информатика: "; cin >> info[14];
+        info[8] = "ГіГ«.В " + info[8];
+        cout << "   Г„Г®Г¬: "; cin >> info[9];
+        info[9] = "Г¤Г®Г¬В " + info[9];
+        cout << "   ГЉГўГ Г°ГІГЁГ°Г : "; cin >> info[10];
+        info[10] = "ГЄГў.В " + info[10];
+        cout << "   ГЏГ®Г·ГІГ®ГўГ»Г© ГЁГ­Г¤ГҐГЄГ±: "; cin >> info[11];
+        puts("\nГђГҐГ§ГіГ«ГјГІГ ГІГ» Г…ГѓГќ:");
+        cout << "   ГђГіГ±Г±ГЄГЁГ© ГїГ§Г»ГЄ: "; cin >> info[12];
+        cout << "   ГЊГ ГІГҐГ¬Г ГІГЁГЄГ : "; cin >> info[13];
+        cout << "   Г€Г­ГґГ®Г°Г¬Г ГІГЁГЄГ : "; cin >> info[14];
         ball_to_int();
         system("cls");
     }
     void output() {
         if (summa_ballov() >= 0 && summa_ballov() <= 300) {
-            cout << "Фамилия: " << info[0] << endl;
-            cout << "Имя: " << info[1] << endl;
-            cout << "Отчество: " << info[2] << endl;
-            if (gender) cout << "Пол: мужской\n";
-            else cout << "Пол: женский\n";
-            cout << "Дата рождения: " << info[3] << endl;
-            cout << "Национальность: " << info[4] << endl;
-            cout << "\nАдрес: ";
+            cout << "Г”Г Г¬ГЁГ«ГЁГї: " << info[0] << endl;
+            cout << "Г€Г¬Гї: " << info[1] << endl;
+            cout << "ГЋГІГ·ГҐГ±ГІГўГ®: " << info[2] << endl;
+            if (gender) cout << "ГЏГ®Г«: Г¬ГіГ¦Г±ГЄГ®Г©\n";
+            else cout << "ГЏГ®Г«: Г¦ГҐГ­Г±ГЄГЁГ©\n";
+            cout << "Г„Г ГІГ  Г°Г®Г¦Г¤ГҐГ­ГЁГї: " << info[3] << endl;
+            cout << "ГЌГ Г¶ГЁГ®Г­Г Г«ГјГ­Г®Г±ГІГј: " << info[4] << endl;
+            cout << "\nГЂГ¤Г°ГҐГ±: ";
             for (int i = 5; i < 11; i++) cout << info[i] << ", ";
             cout << info[11];
-            puts("\n\nРезультаты ЕГЭ:");
-            cout << "   Русский язык: " << russian << endl;
-            cout << "   Математика: " << math << endl;
-            cout << "   Информатика: " << inform << endl;
-            cout << "Суммарный балл: " << summa_ballov() << endl;
-            cout << "Проходной балл: " << summa_ballov() / 60 << endl << endl;
+            puts("\n\nГђГҐГ§ГіГ«ГјГІГ ГІГ» Г…ГѓГќ:");
+            cout << "   ГђГіГ±Г±ГЄГЁГ© ГїГ§Г»ГЄ: " << russian << endl;
+            cout << "   ГЊГ ГІГҐГ¬Г ГІГЁГЄГ : " << math << endl;
+            cout << "   Г€Г­ГґГ®Г°Г¬Г ГІГЁГЄГ : " << inform << endl;
+            cout << "Г‘ГіГ¬Г¬Г Г°Г­Г»Г© ГЎГ Г«Г«: " << summa_ballov() << endl;
+            cout << "ГЏГ°Г®ГµГ®Г¤Г­Г®Г© ГЎГ Г«Г«: " << summa_ballov() / 60 << endl << endl;
         }
-        else puts("Ошибка: некорректные данные!\n");
+        else puts("ГЋГёГЁГЎГЄГ : Г­ГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»ГҐ Г¤Г Г­Г­Г»ГҐ!\n");
     }
     void read_from_file(string name) {
         fstream file(name);
@@ -102,10 +103,10 @@ struct abiturient {
         file << gender << endl;
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < info[i].length(); j++)
-                if (info[i][j] == ' ') info[i][j] = ' ';
+                if (info[i][j] == ' ') info[i][j] = 'В ';
             file << info[i] << endl;
-        }//смена формата пробелов для корректности работы с файлом.
-        /*Результаты ЕГЭ*/ {
+        }//Г±Г¬ГҐГ­Г  ГґГ®Г°Г¬Г ГІГ  ГЇГ°Г®ГЎГҐГ«Г®Гў Г¤Г«Гї ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГЁ Г°Г ГЎГ®ГІГ» Г± ГґГ Г©Г«Г®Г¬.
+        /*ГђГҐГ§ГіГ«ГјГІГ ГІГ» Г…ГѓГќ*/ {
             file << russian << endl;
             file << math << endl;
             file << inform << endl;
