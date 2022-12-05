@@ -5,10 +5,9 @@
 using namespace std;
 
 struct abiturient {
-    string info[15];
+    string info[16];
     int russian, math, inform;
     streamoff cursor_pos = 0;
-    bool gender = 1;
     void ball_to_int() {
         russian = 0; math = 0; inform = 0;
         for (int i = info[12].length() - 1, j = 1; i >= 0; i--)
@@ -31,86 +30,92 @@ struct abiturient {
         return russian + math + inform;
     }
     void input() {
-        cout << "Ôàìèëèÿ: "; cin >> info[0];
-        cout << "Èìÿ: "; cin >> info[1];
-        cout << "Îò÷åñòâî: "; cin >> info[2];
+        cout << "First name: "; cin >> info[0];
+        cout << "Middle name: "; cin >> info[1];
+        cout << "Surname: "; cin >> info[2];
         if (info[2].length() == 0) cin >> info[2];
-        string S;
-        cout << "Ïîë: "; cin >> S;
-        if (S[0] == 'Ì' || S[0] == 'ì') gender = 1;
-        else if (S[0] == 'Æ' || S[0] == 'æ') gender = 0;
-        cout << "Äàòà ðîæäåíèÿ: ";  
-        getline(cin, info[3]);
-        if (info[3].length() == 0) getline(cin, info[3]);
-        cout << "Íàöèîíàëüíîñòü: "; 
+        cout << "Sex: "; cin >> info[3];
+        cout << "Date of birth: ";  
         getline(cin, info[4]);
-        cout << "\nÀäðåñ: \n";
-        cout << "   Ñòðàíà: ";      
+        if (info[4].length() == 0) getline(cin, info[4]);
+        cout << "Nation: "; 
         getline(cin, info[5]);
-        cout << "   Ðåãèîí: ";  
+        cout << "\nAddress: \n";
+        cout << "   Country: ";      
         getline(cin, info[6]);
-        cout << "   Íàñåë¸ííûé ïóíêò: ";
+        cout << "   Region: ";  
         getline(cin, info[7]);
-        cout << "   Óëèöà: ";       
+        cout << "   Locality: ";
         getline(cin, info[8]);
-        info[8] = "óë. " + info[8];
-        cout << "   Äîì: "; cin >> info[9];
-        info[9] = "äîì " + info[9];
-        cout << "   Êâàðòèðà: "; cin >> info[10];
-        info[10] = "êâ. " + info[10];
-        cout << "   Ïî÷òîâûé èíäåêñ: "; cin >> info[11];
-        puts("\nÐåçóëüòàòû ÅÃÝ:");
-        cout << "   Ðóññêèé ÿçûê: "; cin >> info[12];
-        cout << "   Ìàòåìàòèêà: "; cin >> info[13];
-        cout << "   Èíôîðìàòèêà: "; cin >> info[14];
+        cout << "   Street: ";       
+        getline(cin, info[9]);
+        info[9] = info[9] + "st.";
+        cout << "   House: "; cin >> info[10];
+        info[10] = "house " + info[10];
+        cout << "   Flat: "; cin >> info[11];
+        info[11] = "flat " + info[11];
+        cout << "   Mail index: "; cin >> info[12];
+        puts("\nResults of exams:");
+        cout << "   English: "; cin >> info[13];
+        cout << "   Math: "; cin >> info[14];
+        cout << "   Infomatics: "; cin >> info[15];
         ball_to_int();
         system("cls");
     }
     void output() {
         if (summa_ballov() >= 0 && summa_ballov() <= 300) {
-            cout << "Ôàìèëèÿ: " << info[0] << endl;
-            cout << "Èìÿ: " << info[1] << endl;
-            cout << "Îò÷åñòâî: " << info[2] << endl;
-            if (gender) cout << "Ïîë: ìóæñêîé\n";
-            else cout << "Ïîë: æåíñêèé\n";
-            cout << "Äàòà ðîæäåíèÿ: " << info[3] << endl;
-            cout << "Íàöèîíàëüíîñòü: " << info[4] << endl;
-            cout << "\nÀäðåñ: ";
-            for (int i = 5; i < 11; i++) cout << info[i] << ", ";
-            cout << info[11];
-            puts("\n\nÐåçóëüòàòû ÅÃÝ:");
-            cout << "   Ðóññêèé ÿçûê: " << russian << endl;
-            cout << "   Ìàòåìàòèêà: " << math << endl;
-            cout << "   Èíôîðìàòèêà: " << inform << endl;
-            cout << "Ñóììàðíûé áàëë: " << summa_ballov() << endl;
-            cout << "Ïðîõîäíîé áàëë: " << summa_ballov() / 60 << endl << endl;
+            cout << "First name: " << info[0] << endl;
+            cout << "Middle name: " << info[1] << endl;
+            cout << "Surname: " << info[2] << endl;
+            cout << "Sex: " << info[3] << endl;
+            cout << "Date of birth: " << info[4] << endl;
+            cout << "Nation: " << info[5] << endl;
+            cout << "\nAddress: ";
+            for (int i = 6; i < 12; i++) cout << info[i] << ", ";
+            cout << info[12];
+            puts("\n\nResults of exams:");
+            cout << "   English: " << russian << endl;
+            cout << "   Math: " << math << endl;
+            cout << "   Informatics: " << inform << endl;
+            cout << "Summ of scores: " << summa_ballov() << endl;
+            cout << "Passing score: " << summa_ballov() / 60 << endl << endl;
         }
-        else puts("Îøèáêà: íåêîððåêòíûå äàííûå!\n");
+        else puts("Error: incorrect data!\n");
     }
     void read_from_file(string name) {
-        fstream file(name);
-        file.seekg(cursor_pos);
+        ifstream file(name, ios::binary);
         if (file.good()) {
-            file >> gender;
-            for (int i = 0; i < 15; i++) file >> info[i];
+            int i = 0;
+            char n = '0', *x = &n;
+            while (i < 16) {
+                file.seekg(cursor_pos);
+                file.read(x, sizeof(char));
+                cout << info[i] << endl;
+                cout << *x << ' ' << i << ' ' << cursor_pos << endl;
+                system("pause");
+                if (*x < 32 && info[i].length() > 0) i++;
+                if (!file.good()) break;
+                info[i] = info[i] + *x;
+                cursor_pos++;
+            }
             cursor_pos = file.tellg();
+            cursor_pos++;
             ball_to_int();
         }    
     }
     void write_to_file(string name) {
-        fstream file(name);
-        file.seekg(cursor_pos);
-        file << gender << endl;
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < info[i].length(); j++)
-                if (info[i][j] == ' ') info[i][j] = ' ';
-            file << info[i] << endl;
-        }//ñìåíà ôîðìàòà ïðîáåëîâ äëÿ êîððåêòíîñòè ðàáîòû ñ ôàéëîì.
-        /*Ðåçóëüòàòû ÅÃÝ*/ {
-            file << russian << endl;
-            file << math << endl;
-            file << inform << endl;
+        fstream file(name, ios::binary);
+        file.open(name);
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < info[i].length(); j++) {
+                file.seekg(cursor_pos);
+                file.write(&info[i][j], sizeof(char));
+                cursor_pos++;
+            }
+            file.seekg(cursor_pos);
+            char n = '\n';
+            file.write(&n, sizeof(char));
+            cursor_pos++;    
         }
-        cursor_pos = file.tellg();
     }
 };
